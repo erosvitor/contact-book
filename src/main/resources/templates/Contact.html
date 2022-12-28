@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width" />
+  <title>Contact Book</title>
+  <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+</head>
+<body>
+  <h1>Contact Book</h1>
+  <div class="panel panel-default" style="margin: 10px">
+    <div class="panel-heading">
+      <h1 class="panel-title">Contatos</h1>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline" method="POST" style="margin: 20px 0" th:object="${contact}" th:action="@{/contacts}">
+        <input type="text" class="form-control" placeholder="Nome" th:field="*{name}"/>
+        <input type="text" class="form-control" placeholder="Email" th:field="*{email}"/>
+        <input type="text" class="form-control" placeholder="Aniversário" th:field="*{birthday}"/>
+        <input type="submit" class="form-control btn-primary" value="Salvar"/>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Aniversário</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="contact : ${contacts}">
+            <td th:text="${contact.name}">AAA</td>
+            <td th:text="${contact.email}">aaa@gmail.com</td>
+            <td th:text="${#temporals.format(contact.birthday, 'dd-MM-yyyy')}">99/99/9999</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
